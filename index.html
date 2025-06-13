@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini DevTool</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    textarea {
+      width: 50%;
+      height: 100%;
+      border: none;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: none;
+      background: #111;
+      color: #0f0;
+      outline: none;
+    }
+
+    iframe {
+      width: 50%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="editor"><!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, iPad Dev!</h1>
+  <p>Edit this HTML!</p>
+</body>
+</html></textarea>
+
+  <iframe id="preview"></iframe>
+
+  <script>
+    const editor = document.getElementById("editor");
+    const preview = document.getElementById("preview");
+
+    function updatePreview() {
+      const doc = preview.contentDocument || preview.contentWindow.document;
+      doc.open();
+      doc.write(editor.value);
+      doc.close();
+    }
+
+    editor.addEventListener("input", updatePreview);
+    updatePreview();
+  </script>
+</body>
+</html>
